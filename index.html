@@ -2,50 +2,32 @@
 <html>
 <head>
 <style>
-$(function () {
-    $('input').on('click', function () {
-        var Status = $(this).val();
-        $.ajax({
-            url: 'Ajax/StatusUpdate.php',
-            data: {
-                text: $("textarea[name=Status]").val(),
-                Status: Status
-            },
-            dataType : 'json'
-        });
-    });
-});
- 
-  $.ajax({
-    url: "http://94.75.123.182:8875/press/bank/1/3",
-    context: document.body,
-    success: function(){
-      $(this).addClass("done");
-    }
-});
- 
- <script type="text/javascript">
-function loadXMLDoc() {
-    var xmlhttp = new XMLHttpRequest();
-
-    xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState == XMLHttpRequest.DONE) {   // XMLHttpRequest.DONE == 4
-           if (xmlhttp.status == 200) {
-               document.getElementById("myDiv").innerHTML = xmlhttp.responseText;
-           }
-           else if (xmlhttp.status == 400) {
-              alert('There was an error 400');
-           }
-           else {
-               alert('something else other than 200 was returned');
-           }
-        }
-    };
-
-    xmlhttp.open("GET", "ajax_info.txt", true);
-    xmlhttp.send();
+    
+    
+// Example POST method implementation:
+async function postData(url = '', data = {}) {
+  // Default options are marked with *
+  const response = await fetch(url, {
+    method: 'GET', // *GET, POST, PUT, DELETE, etc.
+    mode: 'cors', // no-cors, *cors, same-origin
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'same-origin', // include, *same-origin, omit
+    headers: {
+      'Content-Type': 'application/json'
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    redirect: 'follow', // manual, *follow, error
+    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+    body: JSON.stringify(data) // body data type must match "Content-Type" header
+  });
+  return response.json(); // parses JSON response into native JavaScript objects
 }
-</script>
+
+getData('http://94.75.123.182:8875/press/bank/1/3',)
+  .then(data => {
+    console.log(data); // JSON data parsed by `response.json()` call
+  });
+    
     
 </style>
 </head>
@@ -53,7 +35,7 @@ function loadXMLDoc() {
 
 
   
-<input type='button' onclick='UpdateStatus()' value='Status Update'>
+<input type='button' onclick='getData()' value='Next'>
 
 </body>
 </html>
