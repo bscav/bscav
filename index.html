@@ -2,23 +2,55 @@
 <html>
 <head>
 <style>
-
+$(function () {
+    $('input').on('click', function () {
+        var Status = $(this).val();
+        $.ajax({
+            url: 'Ajax/StatusUpdate.php',
+            data: {
+                text: $("textarea[name=Status]").val(),
+                Status: Status
+            },
+            dataType : 'json'
+        });
+    });
+});
+ 
+  $.ajax({
+    url: "http://94.75.123.182:8875/press/bank/1/3",
+    context: document.body,
+    success: function(){
+      $(this).addClass("done");
+    }
+});
+ 
+ 
 </style>
 </head>
 <body>
 
- <form action="http://94.75.123.182:8875/press/bank/1/3" method="get">
- <button type="submit" style="border: 0; background: transparent">
-    <img src="https://github.com/bscav/bscav/raw/master/images/next.png" width="250" height="250" alt="submit" />
-</button> 
- <br>
-  <form action="http://94.75.123.182:8875/press/bank/1/1" method="get">
- <button type="submit" style="border: 0; background: transparent">
-    <img src="https://github.com/bscav/bscav/raw/master/images/back.png" width="250" height="250" alt="submit" />
-</button> 
-  
-   
-</form>
+<script type="text/javascript">
+function loadXMLDoc() {
+    var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == XMLHttpRequest.DONE) {   // XMLHttpRequest.DONE == 4
+           if (xmlhttp.status == 200) {
+               document.getElementById("myDiv").innerHTML = xmlhttp.responseText;
+           }
+           else if (xmlhttp.status == 400) {
+              alert('There was an error 400');
+           }
+           else {
+               alert('something else other than 200 was returned');
+           }
+        }
+    };
+
+    xmlhttp.open("GET", "ajax_info.txt", true);
+    xmlhttp.send();
+}
+</script>
   
 
 </body>
