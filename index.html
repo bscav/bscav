@@ -19,10 +19,22 @@
     }
 
 </script>
+    
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#myform').submit(function(){ //when form is submitted..
+            window.location = "https://www.vmixcall.com/" ; //..get url from the textbox and load that url
+            return false; // prevent the form from being submitted
+        });
+    });
+  </script>
 
 <body bgcolor="#000000">
 
  <input type="submit" value="Next2" onclick="submit()">
 
+    <form id="myform">
+  </form>
 </body>
 </html>
